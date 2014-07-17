@@ -1,0 +1,36 @@
+{
+  "name": "watch-once",
+  "version": "0.0.3",
+  "authors": [
+    "Kent C. Dodds <kent@doddsfamily.us> (http://kent.doddsfamily.us)"
+  ],
+  "description": "A simple module for angular that adds $watchOnce capabilities to the $rootScope",
+  "main": "Scope.$watchOnce.js",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "$watch",
+    "$watchOnce"
+  ],
+  "license": "MIT",
+  "homepage": "http://kent.doddsfamily.us/watchOnce",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test-runner.js",
+    "index.html"
+  ],
+  "dependencies": {
+    "angular": ">=1.0.3"
+  },
+  "_release": "0.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.3",
+    "commit": "3c6dc50b4296e8b066681efa8aa734e107767462"
+  },
+  "_source": "git://github.com/kentcdodds/watchOnce.git",
+  "_target": "~0.0.3",
+  "_originalSource": "watch-once"
+}

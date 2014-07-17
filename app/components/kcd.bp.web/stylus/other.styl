@@ -1,0 +1,20 @@
+html, body
+  height 100%
+
+*, *:active, *:focus, *:visited, *:hover
+  outline none !important // I hate outlines...
+
+.ng-cloak
+  display none
+
+// need to specify this for those anchors without an href attribute
+a, input[type=checkbox]
+  cursor pointer
+
+.cursor-pointer
+  cursor pointer
+
+html.small-screen
+  [class^="icon-"]:not(.maintain-size), [class*=" icon-"]:not(.maintain-size),
+  [class^="fa-"]:not(.maintain-size), [class*=" fa-"]:not(.maintain-size)
+    font-size 30px

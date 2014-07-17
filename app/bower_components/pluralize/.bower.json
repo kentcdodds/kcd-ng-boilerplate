@@ -1,0 +1,14 @@
+{
+  "name": "pluralize",
+  "homepage": "https://github.com/blakeembrey/pluralize",
+  "version": "0.0.10",
+  "_release": "0.0.10",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.10",
+    "commit": "3896b93e4cbd6fe0b9588bc37afd15a3ee26e704"
+  },
+  "_source": "git://github.com/blakeembrey/pluralize.git",
+  "_target": "~0.0.10",
+  "_originalSource": "pluralize"
+}

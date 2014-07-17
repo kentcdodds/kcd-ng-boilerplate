@@ -1,0 +1,40 @@
+for layer in 1 .. 4
+  html:not(.small-screen)
+    .hover-parent-{layer}
+      .hover-only-{layer}
+        opacity 0
+        transition opacity 0.2s
+      &:hover
+        .hover-only-{layer}
+          opacity 1
+
+.transition-opacity
+  &[ng-show], &[ng-hide]
+    transition opacity .25s
+    &.ng-enter
+      opacity 0
+    &.ng-enter-active
+      opacity 1
+    &.ng-leave
+      opacity 1
+    &.ng-leave-active
+      opacity 0
+
+/* Animated views */
+[ui-view].animated-view
+  transition all .25s ease-in-out
+  width 100%
+  &.ng-enter // what I want it to be when it's going to come in
+    position absolute
+    opacity 0
+    /*top 50px*/
+  &.ng-enter-active // what I want it to be when it's in
+    opacity 1
+    /*top 0*/
+  &.ng-leave // what I want it to be when it's going to leave
+    opacity 1
+    /*top 0*/
+  &.ng-leave-active // what I want it to be when it's gone.
+    position absolute
+    /*top 50px*/
+    opacity 0

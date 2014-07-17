@@ -1,0 +1,1 @@
+angular.module('kcd.bp.common.directives', ['kcd.bp.common.services']);

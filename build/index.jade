@@ -1,0 +1,26 @@
+// This file is generated from index.jade
+doctype html
+html(lang="en", ng-app="kcd.bp.web", ng-controller="MainCtrl", ng-class="{'auth': authenticated, 'anon': !authenticated, 'small-screen': smallScreen}")
+  head
+    // create global KCDBP object
+    script.
+      window.KCDBP = {};
+      window.KCDBP.BASE_URL = '#{BASE_URL}';
+      window.KCDBP.API_V1_URL = '#{API_V1_URL}';
+      window.KCDBP.APP_NAME = '#{APP_NAME}';
+      window.KCDBP.onDev = #{onDev};
+    if onDev
+      script.
+        console.log('on development');
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title(ng-bind="title") #{APP_NAME}
+    meta(name="viewport", content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    // load stylesheets
+    for href in stylesheets
+      link(rel="stylesheet", href="#{href}")
+    // load critical scripts
+    for script in scripts
+      script(src="#{script}")
+  body
+    div(ui-view,class="height-100")

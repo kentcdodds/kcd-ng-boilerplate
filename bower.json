@@ -1,0 +1,28 @@
+{
+  "name": "kcd-ng-boilerplate",
+  "version": "0.0.0",
+  "authors": [
+    "Kent C. Dodds <kent@doddsfamily.us>"
+  ],
+  "description": "Boilerplate for angular projects by Kent C. Dodds",
+  "license": "MIT",
+  "homepage": "https://github.com/kentcdodds/kcd-ng-boilerplate",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "moment": "~2.6.0",
+    "lodash": "~2.4.1",
+    "ng-file-upload": "~1.4.0",
+    "angular-ga": "~0.1.3",
+    "angular-ui-router": "~0.2.10",
+    "angular-bootstrap": "~0.11.0",
+    "toastr": "~2.0.2",
+    "font-awesome": "~4.1.0",
+    "angular-data": "~0.9.1",
+    "pluralize": "~0.0.10",
+    "animate.css": "~3.1.1",
+    "watch-once": "~0.0.3",
+    "bootstrap": "~3.2.0",
+    "angular": "1.3.0-beta.15",
+    "angular-animate": "1.3.0-beta.15"
+  }
+}
