@@ -1,12 +1,18 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
+/*
+ * available flags:
+ * prod
+ */
 var argv = require('yargs').argv;
 
 var config = require('./build/user-config.local.json');
 var terminalHelper = require('./build/terminalHelper');
 
-var appFolder = argv.prod ? '.tmp/prod' : 'app';
+var getIndexData = require('./build/get-index-data');
+
+var appFolder = argv.prod ? '.tmp/prod/' : 'app/';
 
 var myJS = ['./app/**/*.js', '!bower_components/**', '!non_bower_components/**'];
 
@@ -34,11 +40,19 @@ gulp.task('stylus', function() {
     .pipe(gulp.dest('./app/styles/'));
 });
 
-/*
 gulp.task('jade', function() {
   return gulp.src('./build/index.jade')
+    .pipe(plugins.data(function(file, cb) {
+      return getIndexData('./build/assets.dev.config.hjson', {
+        onDev: !argv.prod,
+        assetPrefix: appFolder
+      }, function(err, indexData) {
+        if (err) throw err;
+        cb(indexData);
+      });
+    }))
     .pipe(plugins.jade({
-
-    }));
+      pretty: !argv.prod
+    }))
+    .pipe(gulp.dest(appFolder));
 });
- */

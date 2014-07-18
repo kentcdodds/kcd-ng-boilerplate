@@ -10,11 +10,13 @@
   "license": "MIT",
   "devDependencies": {
     "address": "0.0.3",
+    "async": "^0.9.0",
     "glob": "^4.0.2",
     "gulp": "^3.8.6",
     "gulp-angular-templatecache": "^1.2.1",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.3.3",
+    "gulp-data": "^0.1.0",
     "gulp-if": "^1.2.2",
     "gulp-jade": "^0.6.1",
     "gulp-jshint": "^1.7.1",
@@ -24,8 +26,10 @@
     "gulp-sloc": "^1.0.4",
     "gulp-stylus": "^1.0.5",
     "gulp-uglify": "^0.3.1",
+    "hjson": "^0.2.3",
     "jshint-stylish": "^0.4.0",
     "lodash-node": "~2.4.1",
+    "minimatch": "^0.4.0",
     "nib": "~1.0.2",
     "yargs": "^1.2.6"
   }

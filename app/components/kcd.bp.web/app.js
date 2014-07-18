@@ -61,7 +61,7 @@
     ];
     AlertEventBroadcaster.initialize(alertEvents);
 
-    var authState = 'root.auth.home.locks.list';
+    var authState = 'root.auth.home';
     var anonState = 'root.anon.noInitialState';
 
     // if the login state changes, route the user to the correct state

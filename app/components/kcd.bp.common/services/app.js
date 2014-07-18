@@ -22,6 +22,9 @@
     }
 
     // Registration of models
+    DS.defineResource({
+      name: 'user'
+    });
 
     // All resources should be defined at this point
     var resourceNames = Object.keys(DS.definitions);

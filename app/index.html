@@ -1,0 +1,86 @@
+
+<!-- This file is generated from index.jade--><!DOCTYPE html>
+<html lang="en" ng-app="kcd.bp.web" ng-controller="MainCtrl" ng-class="{'auth': authenticated, 'anon': !authenticated, 'small-screen': smallScreen}">
+  <head>
+    <!-- create global KCDBP object-->
+    <script>
+      window.KCDBP = {};
+      window.KCDBP.BASE_URL = '/';
+      window.KCDBP.API_V1_URL = '/KCD/BOILERPLATE';
+      window.KCDBP.APP_NAME = 'KCD Boilerplate';
+      window.KCDBP.onDev = true;
+    </script>
+    <script>console.log('on development');</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title ng-bind="title">KCD Boilerplate</title>
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- load stylesheets-->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/bower_components/animate.css/animate.css">
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <!-- load scripts-->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-cache/dist/angular-cache.js"></script>
+    <script src="/bower_components/angular-data/dist/angular-data.js"></script>
+    <script src="/bower_components/angular-ga/ga.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/lodash/dist/lodash.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/ng-file-upload/angular-file-upload.js"></script>
+    <script src="/bower_components/pluralize/pluralize.js"></script>
+    <script src="/bower_components/toastr/toastr.js"></script>
+    <script src="/bower_components/watch-once/Scope.$watchOnce.js"></script>
+    <script src="/non_bower_components/Scope.$safeApply.js"></script>
+    <script src="/components/kcd.bp.common/app.js"></script>
+    <script src="/components/kcd.bp.common/constants/app.js"></script>
+    <script src="/components/kcd.bp.common/directives/app.js"></script>
+    <script src="/components/kcd.bp.common/filters/app.js"></script>
+    <script src="/components/kcd.bp.common/services/app.js"></script>
+    <script src="/components/kcd.bp.web/app.js"></script>
+    <script src="/components/kcd.bp.web/app/anon/login/app.js"></script>
+    <script src="/components/kcd.bp.web/app/auth/home/app.js"></script>
+    <script src="/components/kcd.bp.web/constants/app.js"></script>
+    <script src="/components/kcd.bp.web/directives/app.js"></script>
+    <script src="/components/kcd.bp.web/services/app.js"></script>
+    <script src="/components/kcd.bp.common/constants/RandomWords.js"></script>
+    <script src="/components/kcd.bp.common/directives/kcd-bp-autofocus.js"></script>
+    <script src="/components/kcd.bp.common/directives/kcd-bp-custom-validation.js"></script>
+    <script src="/components/kcd.bp.common/directives/kcd-bp-dynamic-input-name.js"></script>
+    <script src="/components/kcd.bp.common/directives/kcd-bp-input-match.js"></script>
+    <script src="/components/kcd.bp.common/directives/kcd-bp-recompile.js"></script>
+    <script src="/components/kcd.bp.common/directives/kcd-bp-select-all-on-focus.js"></script>
+    <script src="/components/kcd.bp.common/directives/kcd-bp-special-input.js"></script>
+    <script src="/components/kcd.bp.common/directives/kcd-bp-time-binding.js"></script>
+    <script src="/components/kcd.bp.common/filters/kcdBpDateFilter.js"></script>
+    <script src="/components/kcd.bp.common/filters/kcdBpDayOfWeekFilter.js"></script>
+    <script src="/components/kcd.bp.common/filters/kcdBpDynamicFilter.js"></script>
+    <script src="/components/kcd.bp.common/services/AlertEventBroadcaster.js"></script>
+    <script src="/components/kcd.bp.common/services/AuthInterceptor.js"></script>
+    <script src="/components/kcd.bp.common/services/AuthService.js"></script>
+    <script src="/components/kcd.bp.common/services/CurrentUserService.js"></script>
+    <script src="/components/kcd.bp.common/services/ISOStringifyInterceptor.js"></script>
+    <script src="/components/kcd.bp.common/services/LoginState.js"></script>
+    <script src="/components/kcd.bp.common/services/MediaQueryService.js"></script>
+    <script src="/components/kcd.bp.common/services/RemoveTempFieldsInterceptor.js"></script>
+    <script src="/components/kcd.bp.common/services/StateUtils.js"></script>
+    <script src="/components/kcd.bp.common/services/UtilFunctions.js"></script>
+    <script src="/components/kcd.bp.common/services/UtilService.js"></script>
+    <script src="/components/kcd.bp.web/app/MainCtrl.js"></script>
+    <script src="/components/kcd.bp.web/app/anon/login/LoginCtrl.js"></script>
+    <script src="/components/kcd.bp.web/app/auth/home/HomeCtrl.js"></script>
+    <script src="/components/kcd.bp.web/services/AlertService.js"></script>
+    <script src="/components/kcd.bp.web/services/CommonModalService.js"></script>
+    <script src="/components/kcd.bp.web/services/EntityDeletorService.js"></script>
+    <script src="/components/kcd.bp.web/services/ErrorDisplayService.js"></script>
+    <script src="/dev-scripts/long-errors.js"></script>
+  </head>
+  <body>
+    <div ui-view class="height-100"></div>
+  </body>
+</html>
