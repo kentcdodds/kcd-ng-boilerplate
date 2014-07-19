@@ -15,7 +15,7 @@ module.exports = function loadAssets(file, options, callback) {
     async.map(globPatterns, function(pattern, cb) {
       return glob(path.join(options.assetPrefix, pattern), function(err, result) {
         if (_.isEmpty(result)) {
-          console.warn('load-assets.js: Worthless pattern:', pattern);
+          console.warn('get-index-data.js: Worthless pattern:', pattern);
         }
         cb(err, result);
       });

@@ -11,6 +11,7 @@
   "devDependencies": {
     "address": "0.0.3",
     "async": "^0.9.0",
+    "chokidar": "^0.8.2",
     "glob": "^4.0.2",
     "gulp": "^3.8.6",
     "gulp-angular-templatecache": "^1.2.1",
@@ -27,6 +28,7 @@
     "gulp-stylus": "^1.0.5",
     "gulp-uglify": "^0.3.1",
     "hjson": "^0.2.3",
+    "html5-lint": "^0.2.2",
     "jshint-stylish": "^0.4.0",
     "lodash-node": "~2.4.1",
     "minimatch": "^0.4.0",
