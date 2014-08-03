@@ -29,12 +29,14 @@
       "bower_components": [
         bootstrap/**
         font-awesome/**
+        # jquery needs to be before angular so jqLite is replaced by jQuery
         jquery/**
         angular/**
         **
       ]
     }
     { "non_bower_components": "**" }
+    # all app.js files must be loaded before others so the modules are created before anything is registered
     { components: "**/app.js" }
   ]
 }
