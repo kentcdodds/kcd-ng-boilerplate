@@ -5,6 +5,7 @@ var _ = require('lodash-node');
 var Hjson = require('hjson');
 var minimatch = require('minimatch');
 var async = require('async');
+var argv = require('yargs').argv;
 
 module.exports = function loadAssets(file, options, callback) {
   fs.readFile(file, 'utf8', function (err, data) {
@@ -22,6 +23,7 @@ module.exports = function loadAssets(file, options, callback) {
     }, function(err, result) {
       if (err) return callback(err);
       var flatResults = _.flatten(result);
+      flatResults = ignoreIgnoreds(assetConfig.ignore[options.env], flatResults);
       flatResults = sortFiles(assetConfig.priorities, flatResults);
       var finalAssets = {};
       var extensionRegex = /\.([0-9a-z]+$)/i;
@@ -41,7 +43,7 @@ module.exports = function loadAssets(file, options, callback) {
       BASE_URL: '/',
       API_V1_URL: '/KCD/BOILERPLATE',
       APP_NAME: 'KCD Boilerplate',
-      onDev: options.onDev
+      onDev: options.env !== 'prod'
     });
   }
 };
@@ -66,17 +68,37 @@ function joinPaths(value, key, parentPath) {
   return patterns;
 }
 
+function ignoreIgnoreds(ignoreds, paths) {
+  if (!ignoreds) {
+    return paths;
+  }
+  var ignoredGlobs = joinPaths(ignoreds);
+  var resultPaths = [];
+  matchGlobOnPaths(ignoredGlobs, paths, function(matches, path) {
+    if (!matches) {
+      resultPaths.push(path);
+    }
+  });
+  return resultPaths;
+}
+
 function sortFiles(priorities, paths) {
   var priorityGlobs = joinPaths(priorities);
   var priorityPaths = [];
-  _.each(priorityGlobs, function(glob, index) {
-    _.each(paths, function(path) {
-      if (minimatch(path, '**/' + glob)) {
-        priorityPaths[index] = priorityPaths[index] || [];
-        priorityPaths[index].push(path);
-      }
-    });
+  matchGlobOnPaths(priorityGlobs, paths, function(matches, path, globIndex) {
+    if (matches) {
+      priorityPaths[globIndex] = priorityPaths[globIndex] || [];
+      priorityPaths[globIndex].push(path);
+    }
   });
   var flattenedPriorityPaths = _.flatten(priorityPaths);
   return _.union(flattenedPriorityPaths, paths);
+}
+
+function matchGlobOnPaths(globs, paths, cb) {
+  _.each(globs, function(glob, index) {
+    _.each(paths, function(path) {
+      cb(minimatch(path, '**/' + glob), path, index);
+    });
+  });
 }

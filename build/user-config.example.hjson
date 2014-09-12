@@ -1,0 +1,6 @@
+{
+  projectPath: '~/Developer/kcd-ng-boilerplate'
+  shell: {
+    start: 'echo start'
+  }
+}

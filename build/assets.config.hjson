@@ -20,9 +20,7 @@
       "watch-once": Scope.$watchOnce.js
     }
     "non_bower_components": "**/*.js"
-    components: "**/*.js"
-    styles: "**/*.css"
-    "dev-scripts": "**/*.*"
+    components: "**/*.*"
   }
   priorities: [
     {
@@ -39,4 +37,9 @@
     # all app.js files must be loaded before others so the modules are created before anything is registered
     { components: "**/app.js" }
   ]
+  ignore: {
+    prod: [
+      "components/**/*.*"
+    ]
+  }
 }
