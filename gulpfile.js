@@ -58,7 +58,7 @@ gulp.task('stylus', function() {
     .pipe(gulp.dest('./app/'));
 });
 
-function jadeTask() {
+function jadeTask(dest) {
   return gulp.src('./build/index.jade')
     .pipe(plugins.data(function(file, cb) {
       return getIndexData('./build/assets.config.hjson', {
@@ -72,7 +72,7 @@ function jadeTask() {
     .pipe(plugins.jade({
       pretty: !argv.prod
     }))
-    .pipe(gulp.dest(appFolder));
+    .pipe(gulp.dest(dest));
 }
 
 gulp.task('jade', jadeTask);
@@ -85,10 +85,10 @@ gulp.task('watch', function() {
 
   watcher.on('add', function(path) {
     console.log(path + ' added. Re-running jade');
-    jadeTask();
+    jadeTask(appFolder);
   }).on('unlink', function(path) {
     console.log(path + ' removed. Re-running jade');
-    jadeTask();
+    jadeTask(appFolder);
   });
 
   gulp.watch(paths.jade, ['jade']);
@@ -118,16 +118,18 @@ gulp.task('clean', function(done) {
 });
 
 var prodBuild = {
-  jade: jadeTask,
+  jade: function() {
+    jadeTask(paths.prod)
+  },
   js: function(done) {
     getIndexData('./build/assets.config.hjson', {
       env: 'prod',
       assetPrefix: './app'
-    }, function(err, vendorFiles) {
+    }, function(err, indexData) {
       if (err) throw err;
 
-      var vendorScripts = vendorFiles.scripts;
-      console.log(vendorScripts);
+      var vendorScripts = indexData.scripts;
+      var priorities = indexData.config.priorities;
       var html = plugins.filter('**/*.html');
       var stream = gulp.src(paths.myJS)
         .pipe(plugins.jshint())
@@ -140,17 +142,12 @@ var prodBuild = {
         .pipe(html.restore())
 
         .pipe(plugins.ngAnnotate())
+
+        // add vendor files
         .pipe(plugins.addSrc(vendorScripts))
-//        .pipe(plugins.print())
-        .pipe(plugins.order([
-          '**/components/**/*.*',
-          '**/non_bower_components/**/*.*',
-          '**/bower_components/**/*.*',
-          '**/bower_components/angular/**/*.*',
-          '**/bower_components/jquery/**/*.*'
-        ]))
-        .pipe(plugins.print())
-        .pipe(plugins.concat('script.js'))
+        .pipe(plugins.order(priorities, { base: './app' }))
+
+        .pipe(plugins.concat('script.min.js'))
         .pipe(plugins.uglify())
 
         .pipe(gulp.dest(paths.prod));
@@ -165,7 +162,7 @@ var prodBuild = {
         import: [ 'nib' ],
         compress: true
       }))
-      .pipe(plugins.concat('styles.css'))
+      .pipe(plugins.concat('styles.min.css'))
       .pipe(gulp.dest(paths.prod));
   }
 };
@@ -174,10 +171,12 @@ gulp.task('build:prod:js', prodBuild.js);
 gulp.task('build:prod:css', prodBuild.css);
 gulp.task('build:prod:jade', prodBuild.jade);
 
-gulp.task('build:prod', ['clean'], function() {
-  prodBuild.js();
-  prodBuild.css();
-  // HTML
+gulp.task('build:prod', ['clean'], function(done) {
+  async.parallel([
+    prodBuild.js,
+    prodBuild.css,
+    prodBuild.jade
+  ], done);
 
   // Images
 

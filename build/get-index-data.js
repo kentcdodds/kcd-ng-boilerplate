@@ -32,18 +32,21 @@ module.exports = function loadAssets(file, options, callback) {
         finalAssets[extension] = finalAssets[extension] || [];
         finalAssets[extension].push(path.replace(options.assetPrefix, '/'));
       });
-      return finished(finalAssets);
+      return finished(finalAssets, assetConfig);
     });
   });
 
-  function finished(assets) {
+  function finished(assets, assetConfig) {
     callback(null, {
       scripts: assets.js,
       stylesheets: assets.css,
       BASE_URL: '/',
       API_V1_URL: '/KCD/BOILERPLATE',
       APP_NAME: 'KCD Boilerplate',
-      onDev: options.env !== 'prod'
+      onDev: options.env !== 'prod',
+      config: {
+        priorities: joinPaths(assetConfig.priorities)
+      }
     });
   }
 };
